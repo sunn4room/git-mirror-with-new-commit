@@ -19,7 +19,7 @@ GIT_CLONE_SOURCE="git clone --depth 1"
 test -n "$INPUT_SOURCE_BRANCH" && GIT_CLONE_SOURCE="$GIT_CLONE_SOURCE --branch $INPUT_SOURCE_BRANCH"
 GIT_CLONE_SOURCE="$GIT_CLONE_SOURCE git@$INPUT_SOURCE_REPO.git $HOME/source-repo"
 echo "$GIT_CLONE_SOURCE"
-$GIT_CLONE_SOURCE >/dev/null 2>&1 || error "clone source repo failed"
+$GIT_CLONE_SOURCE || error "clone source repo failed"
 
 GIT_CLONE_DESTINATION="git clone --depth 1"
 test -n "$INPUT_DESTINATION_BRANCH" && GIT_CLONE_DESTINATION="$GIT_CLONE_DESTINATION --branch $INPUT_DESTINATION_BRANCH"
