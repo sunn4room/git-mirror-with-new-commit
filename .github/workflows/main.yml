@@ -3,16 +3,20 @@ on:
   push:
     branches:
       - main
+  schedule:
+    - cron: '0 16 * * *'
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: mirror
+      - name: nixpkgs
         uses: sunn4room/git-mirror-with-new-commit@main
         with:
-          source_repo: https://github.com/sunn4room/test-git-mirror.git
-          destination_repo: git@gitee.com:sunn4room/test-git-mirror.git
+          source_repo: https://github.com/NixOS/nixpkgs.git
+          source_branch: nixos-23.11
+          destination_repo: git@gitee.com:sunn4room/nixpkgs.git
+          destination_branch: nixos-23.11
           destination_key: ${{ secrets.SSH_PRIVATE_KEY }}
           git_user_name: sunn4room
           git_user_email: sunn4room@163.com

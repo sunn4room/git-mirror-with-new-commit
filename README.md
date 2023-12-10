@@ -1,6 +1,6 @@
 # Git Mirror Action
 
-A GitHub Action for mirroring a public git repo to another repo with new commit via SSH.
+A GitHub Action for mirroring a git repo to another repo with new commit via SSH.
 
 > NOTE with new commit, ignoring origin commits from source repo.
 
