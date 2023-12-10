@@ -9,11 +9,12 @@ A GitHub Action for mirroring a public git repo to another repo with new commit 
 ```yml
 - uses: sunn4room/git-mirror-with-new-commit@main
   with:
-    source-repo: "domain:xxx/xxx" # require
-    source-branch: ""
-    destination-repo: "domain:xxx/xxx" # require
-    destination-branch: ""
-    ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }} # require
+    source_repo: "domain:xxx/xxx" # require
+    source_branch: "main"
+    source_key: ${{ secrets.SSH_PRIVATE_KEY }}
+    destination_repo: "domain:xxx/xxx" # require
+    destination_branch: "main"
+    destination_key: ${{ secrets.SSH_PRIVATE_KEY }}
 ```
 
 ## License

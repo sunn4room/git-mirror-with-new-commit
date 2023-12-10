@@ -7,21 +7,21 @@ inputs:
   source_repo:
     description: 'Source repo.'
     required: true
-    default: ''
   source_branch:
     description: 'Source branch.'
+    required: false
+  source_key:
+    description: 'SSH private key for source repo.'
     required: false
   destination_repo:
     description: 'Destination repo.'
     required: true
-    default: ''
   destination_branch:
     description: 'Destination branch.'
     required: false
-  ssh_private_key:
+  destination_key:
     description: 'SSH private key for destination repo.'
     required: true
-    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'

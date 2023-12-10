@@ -5,28 +5,31 @@ error() {
   exit 1
 }
 
-test -n "$INPUT_SSH_PRIVATE_KEY" || error "ssh private key is null"
+set_key() {
+  echo "$1" > /root/.ssh/id_rsa
+  chmod 600 /root/.ssh/id_rsa
+}
+
 test -n "$INPUT_SOURCE_REPO" || error "source repo is null"
 test -n "$INPUT_DESTINATION_REPO" || error "destination repo is null"
+test -n "$INPUT_DESTINATION_KEY" || error "destination repo ssh private key is null"
 
-echo "write ssh private key"
-echo "StrictHostKeyChecking no" > /etc/ssh/ssh_config
 mkdir -p /root/.ssh
-echo "$INPUT_SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
-chmod 600 /root/.ssh/id_rsa
-#cp /root/.ssh/* ~/.ssh/ || error "cp"
+echo "StrictHostKeyChecking no" > /etc/ssh/ssh_config
 
-# GIT_CLONE_SOURCE="git clone --depth 1"
-# test -n "$INPUT_SOURCE_BRANCH" && GIT_CLONE_SOURCE="$GIT_CLONE_SOURCE --branch $INPUT_SOURCE_BRANCH"
-# GIT_CLONE_SOURCE="$GIT_CLONE_SOURCE git@$INPUT_SOURCE_REPO.git $HOME/source-repo"
-# echo "$GIT_CLONE_SOURCE"
-# $GIT_CLONE_SOURCE || error "clone source repo failed"
+test -n "$INPUT_SOURCE_KEY" && set_key "$INPUT_SOURCE_KEY"
+GIT_CLONE_SOURCE="git clone --depth 1"
+test -n "$INPUT_SOURCE_BRANCH" && GIT_CLONE_SOURCE="$GIT_CLONE_SOURCE --branch $INPUT_SOURCE_BRANCH"
+GIT_CLONE_SOURCE="$GIT_CLONE_SOURCE $INPUT_SOURCE_REPO $HOME/source-repo"
+echo "$GIT_CLONE_SOURCE"
+$GIT_CLONE_SOURCE >/dev/null 2>&1 || error "clone source repo failed"
 
+set_key "$INPUT_DESTINATION_KEY"
 GIT_CLONE_DESTINATION="git clone --depth 1"
 test -n "$INPUT_DESTINATION_BRANCH" && GIT_CLONE_DESTINATION="$GIT_CLONE_DESTINATION --branch $INPUT_DESTINATION_BRANCH"
-GIT_CLONE_DESTINATION="$GIT_CLONE_DESTINATION git@$INPUT_DESTINATION_REPO.git $HOME/destination-repo"
+GIT_CLONE_DESTINATION="$GIT_CLONE_DESTINATION $INPUT_DESTINATION_REPO $HOME/destination-repo"
 echo "$GIT_CLONE_DESTINATION"
-$GIT_CLONE_DESTINATION || error "clone destination repo failed"
+$GIT_CLONE_DESTINATION >/dev/null 2>&1 || error "clone destination repo failed"
 
 # rm -rf ~/source-repo/.git
 # cp -r ~/destination-repo/.git ~/source-repo/.git
