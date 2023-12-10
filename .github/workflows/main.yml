@@ -11,6 +11,6 @@ jobs:
       - name: mirror
         uses: sunn4room/git-mirror-with-new-commit@main
         with:
-          source_repo: git@github.com:sunn4room/test-git-mirror.git
+          source_repo: https://github.com/sunn4room/test-git-mirror.git
           destination_repo: git@gitee.com:sunn4room/test-git-mirror.git
           destination_key: ${{ secrets.SSH_PRIVATE_KEY }}
