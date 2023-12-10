@@ -10,11 +10,11 @@ test -n "$INPUT_SOURCE_REPO" || error "source repo is null"
 test -n "$INPUT_DESTINATION_REPO" || error "destination repo is null"
 
 echo "write ssh private key"
-mkdir -p ~/.ssh
-echo "$INPUT_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa | sed -n '1p;2p;$p'
-chmod 600 ~/.ssh/id_rsa
-echo "StrictHostKeyChecking no" > ~/.ssh/config
+echo "StrictHostKeyChecking no" > /etc/ssh/ssh_config
+mkdir -p /root/.ssh
+echo "$INPUT_SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+chmod 600 /root/.ssh/id_rsa
+cp /root/.ssh/* ~/.ssh/ || error "cp"
 
 # GIT_CLONE_SOURCE="git clone --depth 1"
 # test -n "$INPUT_SOURCE_BRANCH" && GIT_CLONE_SOURCE="$GIT_CLONE_SOURCE --branch $INPUT_SOURCE_BRANCH"
