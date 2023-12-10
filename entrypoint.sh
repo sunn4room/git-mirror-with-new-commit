@@ -39,5 +39,5 @@ if test "$(git status -s | wc -l)" -eq "0"; then
   exit 0
 fi
 git add --all >/dev/null 2>&1 || error "git add failed"
-git commit -m "$(date)" >/dev/null 2>&1 || error "git commit failed"
+git commit -m "$(date)" || error "git commit failed"
 git push >/dev/null 2>&1 || error "git push failed"
