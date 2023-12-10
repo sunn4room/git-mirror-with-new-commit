@@ -14,3 +14,5 @@ jobs:
           source_repo: https://github.com/sunn4room/test-git-mirror.git
           destination_repo: git@gitee.com:sunn4room/test-git-mirror.git
           destination_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          git_user_name: sunn4room
+          git_user_email: sunn4room@163.com

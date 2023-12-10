@@ -13,6 +13,8 @@ set_key() {
 test -n "$INPUT_SOURCE_REPO" || error "source repo is null"
 test -n "$INPUT_DESTINATION_REPO" || error "destination repo is null"
 test -n "$INPUT_DESTINATION_KEY" || error "destination repo ssh private key is null"
+test -n "$INPUT_GIT_USER_NAME" || error "git user name is null"
+test -n "$INPUT_GIT_USER_EMAIL" || error "git user email is null"
 
 mkdir -p /root/.ssh
 echo "StrictHostKeyChecking no" > /etc/ssh/ssh_config
@@ -38,6 +40,8 @@ if test "$(git status -s | wc -l)" -eq "0"; then
   echo "there is no change"
   exit 0
 fi
+git config --global user.name "$INPUT_GIT_USER_NAME"
+git config --global user.email "$INPUT_GIT_USER_EMAIL"
 git add --all >/dev/null 2>&1 || error "git add failed"
-git commit -m "$(date)" || error "git commit failed"
+git commit -m "$(date)" >/dev/null 2>&1 || error "git commit failed"
 git push >/dev/null 2>&1 || error "git push failed"

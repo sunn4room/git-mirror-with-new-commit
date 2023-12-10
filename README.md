@@ -15,6 +15,8 @@ A GitHub Action for mirroring a public git repo to another repo with new commit 
     destination_repo: "domain:xxx/xxx" # require
     destination_branch: "main"
     destination_key: ${{ secrets.SSH_PRIVATE_KEY }}
+    git_user_name: "name"
+    git_user_email" "name@google.com"
 ```
 
 ## License
