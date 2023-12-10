@@ -4,21 +4,21 @@ branding:
   icon: 'copy'
   color: 'orange'
 inputs:
-  source-repo:
+  source_repo:
     description: 'Source repo.'
     required: true
     default: ''
-  source-branch:
+  source_branch:
     description: 'Source branch.'
     required: false
-  destination-repo:
+  destination_repo:
     description: 'Destination repo.'
     required: true
     default: ''
-  destination-branch:
+  destination_branch:
     description: 'Destination branch.'
     required: false
-  ssh-private-key:
+  ssh_private_key:
     description: 'SSH private key for destination repo.'
     required: true
     default: ''
