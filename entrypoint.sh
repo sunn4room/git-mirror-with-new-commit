@@ -14,7 +14,7 @@ echo "StrictHostKeyChecking no" > /etc/ssh/ssh_config
 mkdir -p /root/.ssh
 echo "$INPUT_SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
 chmod 600 /root/.ssh/id_rsa
-cp /root/.ssh/* ~/.ssh/ || error "cp"
+#cp /root/.ssh/* ~/.ssh/ || error "cp"
 
 # GIT_CLONE_SOURCE="git clone --depth 1"
 # test -n "$INPUT_SOURCE_BRANCH" && GIT_CLONE_SOURCE="$GIT_CLONE_SOURCE --branch $INPUT_SOURCE_BRANCH"
