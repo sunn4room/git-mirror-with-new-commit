@@ -31,13 +31,13 @@ GIT_CLONE_DESTINATION="$GIT_CLONE_DESTINATION $INPUT_DESTINATION_REPO $HOME/dest
 echo "$GIT_CLONE_DESTINATION"
 $GIT_CLONE_DESTINATION >/dev/null 2>&1 || error "clone destination repo failed"
 
-# rm -rf ~/source-repo/.git
-# cp -r ~/destination-repo/.git ~/source-repo/.git
-# cd ~/source-repo
-# if test "$(git status -s | wc -l)" -eq "0"; then
-#   echo "there is no change"
-#   exit 0
-# fi
-# git add --all >/dev/null 2>&1 || error "git add failed"
-# git commit -m "$(date)" >/dev/null 2>&1 || error "git commit failed"
-# git push >/dev/null 2>&1 || error "git push failed"
+rm -rf ~/source-repo/.git
+cp -r ~/destination-repo/.git ~/source-repo/.git
+cd ~/source-repo
+if test "$(git status -s | wc -l)" -eq "0"; then
+  echo "there is no change"
+  exit 0
+fi
+git add --all >/dev/null 2>&1 || error "git add failed"
+git commit -m "$(date)" >/dev/null 2>&1 || error "git commit failed"
+git push >/dev/null 2>&1 || error "git push failed"
