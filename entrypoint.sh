@@ -12,7 +12,7 @@ test -n "$INPUT_DESTINATION_REPO" || error "destination repo is null"
 echo "write ssh private key"
 mkdir -p ~/.ssh
 echo "$INPUT_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa | sed -n '1p;2p;$p'
 chmod 600 ~/.ssh/id_rsa
 echo "StrictHostKeyChecking no" > ~/.ssh/config
 
