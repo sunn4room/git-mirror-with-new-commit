@@ -1,0 +1,16 @@
+name: Git Mirror with New Commit
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: mirror
+        uses: sunn4room/git-mirror-with-new-commit@main
+        with:
+          source-repo: github.com:sunn4room/test-git-mirror
+          destination-repo: gitee.com:sunn4room/test-git-mirror
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
