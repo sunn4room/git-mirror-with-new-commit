@@ -18,6 +18,10 @@ inputs:
   destination-branch:
     description: 'Destination branch.'
     required: false
+  ssh-private-key:
+    description: 'SSH private key for destination repo.'
+    required: true
+    default: ''
 runs:
   using: 'docker'
   image: 'Dockerfile'
